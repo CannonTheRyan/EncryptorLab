@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Encryptor
 {
   /** A two-dimensional array of single-character strings, instantiated in the constructor */
@@ -160,5 +162,32 @@ public class Encryptor
       }
     }
     return str.substring(0, str.length()-count);
+  }
+
+  public String superEncryptMessage(String message)
+  {
+    String newMessage = "";
+    for (int i = 0; i < message.length(); i++)
+    {
+      newMessage += shiftLetter(message.charAt(i), i);
+    }
+    return encryptMessage(newMessage);
+  }
+
+  public String superDecryptMessage(String message)
+  {
+    String newMessage = decryptMessage(message);
+    System.out.println(newMessage);
+    String decryptedMessage = "";
+    for (int i = 0; i < newMessage.length(); i++)
+    {
+      decryptedMessage += shiftLetter(newMessage.charAt(i), -i);
+    }
+    return decryptedMessage;
+  }
+
+  public char shiftLetter(char letter, int shift)
+  {
+    return (char) (letter + shift);
   }
 }
